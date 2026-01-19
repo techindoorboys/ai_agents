@@ -80,9 +80,10 @@ web_browsing_agent/
 
 Create a `.env` file at the **project root**:
 
-```env
+```
 GOOGLE_API_KEY=your_gemini_api_key_here
 BACKEND_URL=http://localhost:8000
+```
 ⚠️ Do NOT commit .env to GitHub
 Add it to .gitignore.
 
