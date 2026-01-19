@@ -1,0 +1,11 @@
+[project]
+name = "web-browsing-agent-frontend"
+version = "0.1.0"
+dependencies = [
+  "streamlit",
+  "requests",
+  "python-dotenv"
+]
+
+[tool.uv]
+python = "3.11"

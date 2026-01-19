@@ -1,0 +1,17 @@
+[project]
+name = "web-browsing-agent-backend"
+version = "0.1.0"
+dependencies = [
+  "fastapi",
+  "uvicorn",
+  "langgraph",
+  "langchain",
+  "beautifulsoup4",
+  "requests",
+  "python-dotenv",
+  "pydantic",
+  "google-genai"
+]
+
+[tool.uv]
+python = "3.11"
