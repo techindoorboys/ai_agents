@@ -19,32 +19,26 @@ The system is built with **FastAPI, LangGraph, Streamlit, and uv**, and is desig
 ---
 
 ## 🏗️ Architecture Overview
-
-┌─────────────┐
-│ Streamlit │ ← UI
-└──────┬──────┘
-│ HTTP
-┌──────▼──────┐
-│ FastAPI │ ← Backend API
-└──────┬──────┘
-│
-┌──────▼────────────┐
-│ LangGraph Agent │
-│ ├─ Fetch Page │
-│ └─ Summarize │
-└──────┬────────────┘
-│
-┌──────▼────────────┐
-│ Gemini 1.5 Flash │ ← LLM
-└───────────────────┘
-
-yaml
-Copy code
-
+```
+User
+  │
+  ▼
+Streamlit UI
+  │
+  ▼
+FastAPI Backend
+  │
+  ▼
+LangGraph Agent
+  ├── Fetch Web Page
+  └── Summarize Content
+  │
+  ▼
+Gemini 1.5 Flash
+```
 ---
-
 ## 📂 Project Structure
-
+```
 web_browsing_agent/
 ├── backend/
 │ ├── app/
@@ -64,12 +58,8 @@ web_browsing_agent/
 ├── .env # Environment variables
 ├── .gitignore
 └── README.md
-
-yaml
-Copy code
-
+```
 ---
-
 ## 🛠️ Tech Stack
 
 | Layer | Technology |
@@ -98,30 +88,29 @@ Add it to .gitignore.
 
 ▶️ Running the Project (GitHub Codespaces)
 1️⃣ Install uv (once)
-bash
-Copy code
+```
 pip install uv
+```
 2️⃣ Backend Setup (FastAPI)
-bash
-Copy code
+```
 cd backend
 uv venv
 source .venv/bin/activate
 uv pip install -r pyproject.toml
 uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+```
 ✅ API Docs:
 http://localhost:8000/docs
 
 3️⃣ Frontend Setup (Streamlit)
 Open a new terminal:
-
-bash
-Copy code
+```
 cd frontend
 uv venv
 source .venv/bin/activate
 uv pip install -r pyproject.toml
 streamlit run app.py --server.port 8501 --server.address 0.0.0.0
+```
 ✅ UI will open automatically via Codespaces port forwarding.
 
 🧪 Test URLs
