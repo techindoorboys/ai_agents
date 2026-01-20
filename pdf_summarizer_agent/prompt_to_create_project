@@ -1,0 +1,18 @@
+I would like to build a Build a PDF Summarizer Agent that extracts insights
+I would like to have following tools used for simplicity
+
+1. Python
+2. UV for package manager
+3. LangGraph for agent orchestration
+4. dotenv for managing the environment
+5. streamlit for a simple ui
+6. fastapi for the backend
+7. For getting web page information, lets use free tools such as beautifulsoup
+
+Provide me code to create the above project from starting to end
+Additional Note: I am going to do this in github codespaces, hence how to run these backend and frontend, please instruct me that.
+
+Additional Notes
+* use latest genai libraries 
+* Given a pdf of the url, it should generate very nice insights like summary, abstract and etc.
+* I want to implement using LLM/Gemini only from the beginning but simple
