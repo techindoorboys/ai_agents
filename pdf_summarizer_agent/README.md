@@ -1,313 +1,210 @@
-OVERVIEW
+# 📄 PDF Summarizer Agent (Gemini + LangGraph)
 
-This project implements an end-to-end AI agent that takes a PDF URL as input and generates high-quality insights such as:
+An end-to-end **AI-powered PDF Summarizer Agent** that extracts high-quality insights from research papers and documents using **Google Gemini**, **LangGraph**, **FastAPI**, and **Streamlit**.
 
-Abstract
+This project is designed to be **simple, extensible, production-oriented**, and fully compatible with **GitHub Codespaces**.
 
-Executive Summary
+---
 
-Key Insights
+## ✨ Features
 
-Actionable Takeaways
+- Accepts a **PDF URL** as input
+- Extracts text directly from PDFs
+- Generates:
+  - Abstract
+  - Executive Summary
+  - Key Insights
+  - Actionable Takeaways
+- Uses **Gemini LLM only** (no OpenAI dependency)
+- Agent orchestration with **LangGraph**
+- Backend API with **FastAPI**
+- Simple UI using **Streamlit**
+- Environment management with **dotenv**
+- Fast dependency management with **UV**
+- Ready-to-use in **GitHub Codespaces**
 
-The system is intentionally designed to be simple, extensible, and production-ready, using modern GenAI tooling while remaining easy to understand.
+---
 
-The project uses Gemini LLM, LangGraph for orchestration, FastAPI for backend, and Streamlit for UI, and is fully compatible with GitHub Codespaces.
+## 🧠 Architecture Overview
 
-KEY FEATURES
+```text
+User (Streamlit UI)
+        |
+        v
+FastAPI Backend
+        |
+        v
+LangGraph Agent
+        |
+        v
+PDF Download → Text Extraction → Gemini LLM
+        |
+        v
+Structured Insights Response
 
-Accepts a public PDF URL (e.g. arXiv papers)
+## 🛠 Tech Stack
 
-Extracts text directly from the PDF
+---
 
-Uses Gemini LLM for structured summarization
+### LLM
+- Google Gemini (`gemini-1.5-flash`)
 
-Agent orchestration using LangGraph
+### Agent Framework
+- LangGraph
+- LangChain Core
 
-REST API backend using FastAPI
+### Backend
+- FastAPI
+- Uvicorn
 
-Simple UI using Streamlit
+### Frontend
+- Streamlit
 
-Environment management using dotenv
+### Utilities
+- pypdf (PDF parsing)
+- requests
+- BeautifulSoup (web scraping – optional)
+- python-dotenv
 
-Dependency management using UV
+### Package Manager
+- UV (Astral)
 
-Designed for GitHub Codespaces out of the box
+### Runtime
+- Python 3.11+
+- GitHub Codespaces
 
-TECH STACK
+---
 
-LLM
+## 📁 Project Structure
 
-Google Gemini (gemini-1.5-flash)
-
-Agent Orchestration
-
-LangGraph
-
-Backend
-
-FastAPI
-
-Uvicorn
-
-Frontend
-
-Streamlit
-
-Utilities
-
-pypdf (PDF parsing)
-
-requests (HTTP)
-
-BeautifulSoup (optional webpage extraction)
-
-python-dotenv (environment variables)
-
-Package Management
-
-UV (Astral)
-
-Runtime Environment
-
-GitHub Codespaces
-
-Python 3.11+
-
-PROJECT STRUCTURE
-
+```bash
 pdf-summarizer-agent/
-|
-|-- backend/
-| |-- app/
-| | |-- main.py # FastAPI entrypoint
-| | |-- agent.py # LangGraph agent logic
-| | |-- pdf_utils.py # PDF download & text extraction
-| | |-- web_utils.py # Web scraping (optional)
-| | |-- schemas.py # API request models
-| |
-| |-- pyproject.toml # Backend dependencies
-|
-|-- frontend/
-| |-- app.py # Streamlit UI
-| |-- pyproject.toml # Frontend dependencies
-|
-|-- .env # Environment variables
-|-- .gitignore
-|-- README.md
+│
+├── backend/
+│   ├── app/
+│   │   ├── main.py          # FastAPI entrypoint
+│   │   ├── agent.py         # LangGraph agent logic
+│   │   ├── pdf_utils.py     # PDF download & text extraction
+│   │   ├── web_utils.py     # Web scraping (optional)
+│   │   └── schemas.py       # Request/response models
+│   └── pyproject.toml
+│
+├── frontend/
+│   ├── app.py               # Streamlit UI
+│   └── pyproject.toml
+│
+├── .env
+├── .gitignore
+└── README.md
+```
 
-ARCHITECTURE OVERVIEW
+## 🔑 Environment Setup
 
-User provides a PDF URL via Streamlit UI
+1. Get Gemini API Key
 
-Streamlit sends request to FastAPI backend
+Create an API key from:
 
-FastAPI invokes LangGraph agent
-
-LangGraph agent:
-
-Downloads PDF
-
-Extracts text
-
-Sends content to Gemini LLM
-
-Gemini generates structured insights
-
-Backend returns response to UI
-
-UI displays formatted insights
-
-LANGGRAPH AGENT DESIGN
-
-The agent uses a single-node LangGraph workflow for clarity and simplicity.
-
-State Definition:
-
-pdf_url (input)
-
-result (output)
-
-Flow:
-
-Entry Node: summarize
-
-Exit Node: summarize
-
-This structure makes it easy to later extend into:
-
-Multi-node pipelines
-
-Chunking nodes
-
-RAG pipelines
-
-Web enrichment nodes
-
-ENVIRONMENT SETUP
-
-Create a Google Gemini API key:
 https://aistudio.google.com/app/apikey
 
-Create a .env file in the project root:
+2. Create .env file (project root)
+GOOGLE_API_KEY=your_gemini_api_key_here
 
-GOOGLE_API_KEY=your_api_key_here
-
-SETTING UP THE BACKEND
-
-Navigate to backend directory:
-
+## 🚀 Backend Setup (FastAPI + LangGraph)
+### Navigate to backend
 cd backend
 
-Create virtual environment:
-
+### Create virtual environment
 uv venv
 source .venv/bin/activate
 
-Install dependencies:
-
+### Install dependencies
 uv pip install -r pyproject.toml
 
-Run the backend server:
-
+###  Run backend server
 uvicorn app.main:app --host 0.0.0.0 --port 8000
 
-In GitHub Codespaces:
+### GitHub Codespaces
 
-Open the Ports tab
+* Open Ports tab
 
-Make port 8000 public
+* Set port 8000 to Public
 
-API Endpoint:
+## 🌐 API Usage
+###  Endpoint
+```bash
 POST /summarize
+```
 
-Request body:
-
+Request Body
+```json
 {
-"pdf_url": "https://arxiv.org/pdf/1706.03762.pdf
-"
+  "pdf_url": "https://arxiv.org/pdf/1706.03762.pdf"
 }
+```
+```json
+Response
+{
+  "summary": "Abstract...\n\nExecutive Summary...\n\nKey Insights...\n\nActionable Takeaways..."
+}
+```
 
-SETTING UP THE FRONTEND
-
-Navigate to frontend directory:
-
+## 🎨 Frontend Setup (Streamlit)
+### Navigate to frontend
+```bash
 cd frontend
+```
 
-Create virtual environment:
-
+### Create virtual environment
+```bash
 uv venv
 source .venv/bin/activate
-
-Install dependencies:
-
+```
+Install dependencies
+```bash
 uv pip install -r pyproject.toml
+```
 
-Run Streamlit app:
-
+Run Streamlit app
+```bash
 streamlit run app.py --server.port 8501 --server.address 0.0.0.0
+```
+### GitHub Codespaces
 
-In GitHub Codespaces:
+* Open Ports tab
+* Set port 8501 to Public
 
-Open the Ports tab
+## 📄 Sample PDF URLs for Testing
 
-Make port 8501 public
-
-SAMPLE PDF URLS FOR TESTING
-
-Attention Is All You Need (Transformers):
+Attention Is All You Need (Transformers)
+```arduino
 https://arxiv.org/pdf/1706.03762.pdf
+```
 
-GPT-4 Technical Report:
-https://arxiv.org/pdf/2303.08774.pdf
+## 🧩 LangGraph Agent Design
 
-Chain-of-Thought Prompting:
-https://arxiv.org/pdf/2201.11903.pdf
+* Uses a TypedDict-based state
+* Single-node graph for clarity
+* Easy to extend into multi-node workflows
 
-EXPECTED OUTPUT FORMAT
+### Current State Keys
 
-The agent produces structured text including:
+* pdf_url (input)
+* result (output)
 
-Abstract
+## ⚠️ Known Limitations
 
-Executive Summary
+* Large PDFs may require chunking
+* No citation extraction
+* URL-based PDFs only (no file upload yet)
+* No authentication or rate limiting
 
-Key Insights (bullet points)
+## 🔮 Recommended Enhancements
 
-Actionable Takeaways
+* PDF chunking + map-reduce summarization
+* Citation-aware insights
+* Multi-PDF comparison
+* RAG with vector embeddings
+* Streaming responses
+* PDF upload support
+* Docker + CI/CD pipeline
 
-The output is optimized for:
-
-Research understanding
-
-Executive summaries
-
-Technical reviews
-
-DESIGN DECISIONS
-
-Gemini chosen for simplicity and quality
-
-LangGraph chosen for explicit agent state control
-
-UV chosen for fast and clean dependency management
-
-Streamlit chosen for rapid UI iteration
-
-FastAPI chosen for production-ready APIs
-
-KNOWN LIMITATIONS
-
-Very large PDFs may require chunking
-
-No citation tracking yet
-
-No PDF upload (URL only)
-
-No authentication or rate limiting
-
-RECOMMENDED EXTENSIONS
-
-PDF chunking with map-reduce summarization
-
-Citation extraction per insight
-
-Multi-PDF comparison
-
-Export summaries to Markdown / PDF
-
-RAG with vector embeddings
-
-Streaming responses
-
-Retry and fallback LLM logic
-
-Dockerized deployment
-
-WHO IS THIS PROJECT FOR
-
-AI / ML Engineers
-
-GenAI Developers
-
-Research Engineers
-
-Product Managers learning AI
-
-Anyone building LLM agents
-
-LICENSE
-
-MIT License (recommended)
-
-AUTHOR NOTES
-
-This project is intentionally built to be:
-
-Easy to understand
-
-Easy to extend
-
-Easy to explain in interviews
-
-Suitable for GitHub portfolios
