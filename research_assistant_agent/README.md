@@ -124,20 +124,20 @@ Streamlit will be available on port 8501
 🔍 Research Question
 
 ```pgsql
-Copy code
 Impact of large language models on healthcare diagnostics
-📄 PDF URL
-arduino
-Copy code
-https://arxiv.org/pdf/2303.08774.pdf
-Check the “Is this a PDF URL?” box when using a PDF.
 ```
+
+📄 PDF URL
+```arduino
+https://arxiv.org/pdf/2303.08774.pdf
+```
+Check the “Is this a PDF URL?” box when using a PDF.
+
 
 🧠 How LangGraph Works in This Project
 The agent follows a simple routed flow:
 
-java
-Copy code
+```java
 START
   |
   v
@@ -150,6 +150,8 @@ Router Node
      LLM Node (Gemini)
         |
        END
+```
+
 Key Design Rules
 All LangGraph nodes return state dictionaries
 
