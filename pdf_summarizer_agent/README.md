@@ -1,5 +1,8 @@
 # 📄 PDF Summarizer Agent (Gemini + LangGraph)
 
+## Youtube
+🎥 I’ve also recorded the full coding process on YouTube: https://youtu.be/U8LeQMoSDrA?si=kPX0Bccic9xWlKaI
+
 An end-to-end **AI-powered PDF Summarizer Agent** that extracts high-quality insights from research papers and documents using **Google Gemini**, **LangGraph**, **FastAPI**, and **Streamlit**.
 
 This project is designed to be **simple, extensible, production-oriented**, and fully compatible with **GitHub Codespaces**.
