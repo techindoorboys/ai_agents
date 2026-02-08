@@ -1,5 +1,9 @@
 # 📚 Research Assistant with Citations (Gemini + LangGraph)
 
+## Youtube
+🎥 I’ve also recorded the full coding process on YouTube: [https://youtu.be/U8LeQMoSDrA?si=kPX0Bccic9xWlKaI](https://youtu.be/sbkEMTvxAfU)
+
+## Overview
 A simple yet powerful **AI Research Assistant** that can:
 - Answer research questions
 - Analyze PDF research papers from a URL
